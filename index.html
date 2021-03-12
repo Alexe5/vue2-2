@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js HW 2-2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 16px;
+            background-color: #0a0a0a;
+            color: #006400;
+            margin: 0;
+        }
+
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin: 0 0 50px 0;
+        }
+
+        ul {
+            margin: 5px 0;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .hr {
+            height: 1px;
+            background-color: #006400;
+            margin: 50px 0;
+        }
+
+        .content {
+            display: flex;
+        }
+
+        .window {
+            height: 250px;
+            margin: 0 25px 0 0;
+            padding: 5px;
+            overflow: auto;
+            text-align: justify;
+            box-sizing: border-box;
+            border: 1px solid #006400;
+            cursor: default;
+        }
+
+        .form {
+            min-width: 250px;
+            padding: 5px;
+            border: 1px solid #006400;
+            flex-shrink: 0;
+        }
+
+        .form__item {
+            margin: 0 0 15px 0;
+        }
+
+        .form__item:last-child {
+            margin: 0;
+        }
+
+        .scroll {
+            animation: pulse 3s infinite;
+            color: #99b500;
+            margin: 0 0 25px 0;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h2>Задание:</h2>
+    <p>Должен быть блок с текстом, у которого есть полоса прокрутки.</p>
+    <p>Опустившись в низ этого блока, появляются 2 checkbox с такими названиями:</p>
+    <ul>
+        <li>I agree this text</li>
+        <li>Send me spam</li>
+    </ul>
+    <p>При отмеченном checkbox "I agree this text" появляется кнопка "Send data".</p>
+    <p>При отмеченном checkbox "Send me spam" появляются 2 radio с такими названиями:</p>
+    <ul>
+        <li>Send me spam on email</li>
+        <li>Send me spam on phone</li>
+    </ul>
+    <p>Кнопку "Send data" можно нажать без отмеченного checkbox "Send me spam".</p>
+    <p>После нажатия появляется второй экран, на котором отображается сводная информация по полям.</p>
+    <div class="hr"></div>
+
+    <h2>Решение:</h2>
+
+    <div id="app">
+
+        <p class="scroll" v-if="hint">Нужно прокрутить в низ</p>
+
+        <div class="content">
+
+            <div class="window"
+                 v-on:scroll="scrollChecker($event)"
+            >
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt nisi odio perferendis ratione. Ad aliquam asperiores atque dolorem doloremque eligendi error, nostrum odit quis quos, reprehenderit unde voluptatem. A commodi eius harum minus sint voluptatem. Ad asperiores delectus dignissimos, dolor dolore doloribus ducimus est excepturi facilis fuga fugiat magnam numquam officiis perferendis provident quasi quod saepe sequi veniam vitae voluptas voluptatem, voluptatum. Dicta dolor exercitationem fugit, iure quis similique sint soluta voluptatibus? A ab blanditiis cum enim nam nobis provident velit voluptatem. Asperiores at blanditiis distinctio eligendi in laboriosam, laborum optio pariatur quasi quia repellat repudiandae, voluptatem voluptates? Dolores, in, nesciunt? Ab aliquam inventore nemo nihil nobis, optio praesentium ratione temporibus? Culpa, fugit, maiores! A accusantium aliquam animi aperiam at consequatur consequuntur cumque deleniti dolor dolore doloremque ea earum error esse in inventore, laudantium libero maiores maxime nostrum obcaecati officiis perferendis perspiciatis porro quae quidem ratione repellat reprehenderit repudiandae, suscipit temporibus totam voluptas voluptatem. Aliquid in neque porro praesentium quasi recusandae reprehenderit veniam voluptates? Eos fuga fugit in rem temporibus! Autem cupiditate eius eos explicabo facilis fugiat id minima sapiente velit voluptatibus! Adipisci beatae commodi consectetur consequatur consequuntur cumque deserunt dignissimos dolorum eaque et, excepturi exercitationem minus natus nihil nostrum odit officiis, placeat porro quae quisquam rem sit tempora voluptates voluptatibus voluptatum? Corporis earum enim fuga illo impedit itaque, minima minus nisi ut veniam. Assumenda dolore, et excepturi exercitationem, ipsum itaque laudantium minus necessitatibus nobis provident quaerat quia ut voluptas? A beatae consectetur, consequuntur cupiditate dolore dolorum ducimus earum eius et excepturi facere harum illo incidunt iure minima modi molestiae nam nemo officiis praesentium provident qui quidem rem rerum, saepe tempore, temporibus ullam unde velit voluptatem! Ab adipisci, aut commodi consectetur consequatur corporis, culpa debitis deserunt dolor doloribus eaque eius error fugiat hic ipsam magnam nisi provident qui quia, quibusdam quos tempore vitae. Eligendi expedita laborum maiores minus nihil odit perferendis. A accusantium architecto iusto officia repellendus? Accusamus architecto asperiores atque aut beatae consequuntur corporis, cupiditate enim esse facere fuga fugiat in incidunt labore laboriosam maiores modi natus necessitatibus nemo nostrum optio perspiciatis placeat sed sint, sunt totam voluptates voluptatum. Consequatur dicta doloremque dolores illo ipsum minima similique temporibus voluptatum! Adipisci aliquam aliquid asperiores blanditiis consequuntur cumque distinctio doloribus eius error esse et exercitationem facilis fuga fugit ipsa labore laborum modi nam nisi nulla, obcaecati officiis perferendis quod tempora veniam veritatis voluptatem voluptatum. Accusantium ad aliquam aperiam aspernatur aut consequatur consequuntur corporis delectus distinctio dolores eaque, eius eligendi eveniet excepturi fugit, ipsa ipsum magnam nesciunt officia quae quaerat quibusdam rem repellat rerum similique sint sunt temporibus tenetur veniam veritatis voluptas voluptate voluptatem voluptatibus. Aliquid animi autem debitis deleniti ducimus harum ipsa iste labore maxime, nemo perferendis placeat quae quidem repellendus vel velit vero voluptatem voluptatum. A aspernatur assumenda beatae culpa delectus deserunt dolore doloremque ducimus enim error eveniet, explicabo facere, facilis illum in ipsum iste laborum modi nemo nostrum obcaecati odio odit officiis placeat, quasi quibusdam quidem sapiente sequi soluta sunt? Aperiam commodi cum distinctio, dolore ducimus enim, est laborum, molestiae nam quos repellat sed ut voluptatum. Alias deserunt dolor eum expedita nam odio odit quae similique tempora veritatis? Aliquam, animi asperiores cum distinctio facere, illum nesciunt non, nostrum numquam quasi rem repellendus vero voluptate! A amet asperiores enim incidunt libero ullam? Amet dicta dolorum enim, eum expedita fugiat incidunt quaerat sint tempore ullam unde.
+            </div>
+
+            <form class="form"
+                  v-if="bottom"
+                  v-on:submit.prevent="submitHandler()"
+            >
+                <div class="form__item">
+                    <input type="checkbox"
+                           id="form__checkbox1"
+                           v-model="agree"
+                    >
+                    <label for="form__checkbox1">I agree this text</label>
+                </div>
+                <div class="form__item">
+                    <input type="checkbox"
+                           id="form__checkbox2"
+                           v-model="spam"
+                    >
+                    <label for="form__checkbox2">Send me spam</label>
+                </div>
+                <template v-if="spam">
+                    <div class="form__item">
+                        <label>
+                            <input type="radio"
+                                   value="email"
+                                   v-model="send"
+                            >
+                            Send me spam on email
+                        </label>
+                    </div>
+                    <div class="form__item">
+                        <label>
+                            <input type="radio"
+                                   value="phone"
+                                   v-model="send"
+                            >
+                            Send me spam on phone
+                        </label>
+                    </div>
+                </template>
+                <div class="form__item"
+                     v-if="agree"
+                >
+                    <button type="submit"
+                            class="form__btn"
+                    >
+                        Send data
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            bottom: true,
+            agree: false,
+            spam: false,
+            send: '',
+            hint: true
+
+        },
+        methods: {
+            scrollChecker(e){
+                if ( e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight ) {
+                    this.bottom = false;
+                    this.hint = false;
+                }
+            },
+            submitHandler(){
+                console.log(55555);
+            }
+        }
+    });
+
+    // document.querySelector('.window').addEventListener('scroll', function(e) {
+    //     // console.log(e);
+    //     console.log(e.target.scrollTop);
+    //     console.log(e.target.scrollHeight);
+    //     console.log(e.target.clientHeight);
+    //     console.log('');
+    //     // if ( e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight ) {
+    //     //     alert('bottom');
+    //     // }
+    // });
+</script>
+</body>
+</html>
