@@ -46,15 +46,27 @@
             display: flex;
         }
 
+        @media only screen and (max-width: 767px) {
+            .content {
+                flex-direction: column;
+            }
+        }
+
         .window {
             height: 250px;
-            margin: 0 25px 0 0;
+            margin: 0 15px 0 0;
             padding: 5px;
             overflow: auto;
             text-align: justify;
             box-sizing: border-box;
             border: 1px solid #006400;
             cursor: default;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .window {
+                margin: 0 0 15px 0;
+            }
         }
 
         .form {
