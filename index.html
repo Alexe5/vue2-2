@@ -121,7 +121,7 @@
 
             <div class="window"
                  v-on:scroll="scrollChecker($event)"
-                 v-on:touchmove="scrollChecker($event)"
+                 v-on:touchmove="scrollChecker1($event)"
             >
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt nisi odio perferendis ratione. Ad aliquam asperiores atque dolorem doloremque eligendi error, nostrum odit quis quos, reprehenderit unde voluptatem. A commodi eius harum minus sint voluptatem. Ad asperiores delectus dignissimos, dolor dolore doloribus ducimus est excepturi facilis fuga fugiat magnam numquam officiis perferendis provident quasi quod saepe sequi veniam vitae voluptas voluptatem, voluptatum. Dicta dolor exercitationem fugit, iure quis similique sint soluta voluptatibus? A ab blanditiis cum enim nam nobis provident velit voluptatem. Asperiores at blanditiis distinctio eligendi in laboriosam, laborum optio pariatur quasi quia repellat repudiandae, voluptatem voluptates? Dolores, in, nesciunt? Ab aliquam inventore nemo nihil nobis, optio praesentium ratione temporibus? Culpa, fugit, maiores! A accusantium aliquam animi aperiam at consequatur consequuntur cumque deleniti dolor dolore doloremque ea earum error esse in inventore, laudantium libero maiores maxime nostrum obcaecati officiis perferendis perspiciatis porro quae quidem ratione repellat reprehenderit repudiandae, suscipit temporibus totam voluptas voluptatem. Aliquid in neque porro praesentium quasi recusandae reprehenderit veniam voluptates? Eos fuga fugit in rem temporibus! Autem cupiditate eius eos explicabo facilis fugiat id minima sapiente velit voluptatibus! Adipisci beatae commodi consectetur consequatur consequuntur cumque deserunt dignissimos dolorum eaque et, excepturi exercitationem minus natus nihil nostrum odit officiis, placeat porro quae quisquam rem sit tempora voluptates voluptatibus voluptatum? Corporis earum enim fuga illo impedit itaque, minima minus nisi ut veniam. Assumenda dolore, et excepturi exercitationem, ipsum itaque laudantium minus necessitatibus nobis provident quaerat quia ut voluptas? A beatae consectetur, consequuntur cupiditate dolore dolorum ducimus earum eius et excepturi facere harum illo incidunt iure minima modi molestiae nam nemo officiis praesentium provident qui quidem rem rerum, saepe tempore, temporibus ullam unde velit voluptatem! Ab adipisci, aut commodi consectetur consequatur corporis, culpa debitis deserunt dolor doloribus eaque eius error fugiat hic ipsam magnam nisi provident qui quia, quibusdam quos tempore vitae. Eligendi expedita laborum maiores minus nihil odit perferendis. A accusantium architecto iusto officia repellendus? Accusamus architecto asperiores atque aut beatae consequuntur corporis, cupiditate enim esse facere fuga fugiat in incidunt labore laboriosam maiores modi natus necessitatibus nemo nostrum optio perspiciatis placeat sed sint, sunt totam voluptates voluptatum. Consequatur dicta doloremque dolores illo ipsum minima similique temporibus voluptatum! Adipisci aliquam aliquid asperiores blanditiis consequuntur cumque distinctio doloribus eius error esse et exercitationem facilis fuga fugit ipsa labore laborum modi nam nisi nulla, obcaecati officiis perferendis quod tempora veniam veritatis voluptatem voluptatum. Accusantium ad aliquam aperiam aspernatur aut consequatur consequuntur corporis delectus distinctio dolores eaque, eius eligendi eveniet excepturi fugit, ipsa ipsum magnam nesciunt officia quae quaerat quibusdam rem repellat rerum similique sint sunt temporibus tenetur veniam veritatis voluptas voluptate voluptatem voluptatibus. Aliquid animi autem debitis deleniti ducimus harum ipsa iste labore maxime, nemo perferendis placeat quae quidem repellendus vel velit vero voluptatem voluptatum. A aspernatur assumenda beatae culpa delectus deserunt dolore doloremque ducimus enim error eveniet, explicabo facere, facilis illum in ipsum iste laborum modi nemo nostrum obcaecati odio odit officiis placeat, quasi quibusdam quidem sapiente sequi soluta sunt? Aperiam commodi cum distinctio, dolore ducimus enim, est laborum, molestiae nam quos repellat sed ut voluptatum. Alias deserunt dolor eum expedita nam odio odit quae similique tempora veritatis? Aliquam, animi asperiores cum distinctio facere, illum nesciunt non, nostrum numquam quasi rem repellendus vero voluptate! A amet asperiores enim incidunt libero ullam? Amet dicta dolorum enim, eum expedita fugiat incidunt quaerat sint tempore ullam unde.
             </div>
@@ -173,6 +173,9 @@
                         Send data
                     </button>
                 </div>
+                <p>{{ scrollTop }}</p>
+                <p>{{ clientHeight }}</p>
+                <p>{{ scrollHeight }}</p>
             </form>
 
         </div>
@@ -188,14 +191,26 @@
             agree: false,
             spam: false,
             send: '',
-            hint: true
-
+            hint: true,
+            scrollTop: '1',
+            clientHeight: '2',
+            scrollHeight: '3'
         },
         methods: {
             scrollChecker(e){
                 if ( e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight ) {
                     this.bottom = false;
                     this.hint = false;
+                }
+            },
+            scrollChecker1(e){
+                if ( e.target.scrollTop + e.target.clientHeight === e.target.scrollHeight ) {
+                    this.bottom = false;
+                    this.hint = false;
+                    alert('scrollChecker1');
+                    this.scrollTop = e.target.scrollTop;
+                    this.clientHeight = e.target.clientHeight;
+                    this.scrollHeight = e.target.scrollHeight;
                 }
             },
             submitHandler(){
