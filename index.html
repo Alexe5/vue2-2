@@ -208,10 +208,11 @@
                     this.bottom = false;
                     this.hint = false;
                     alert('scrollChecker1');
-                    this.scrollTop = e.target.scrollTop;
-                    this.clientHeight = e.target.clientHeight;
-                    this.scrollHeight = e.target.scrollHeight;
                 }
+
+                this.scrollTop = e.target.scrollTop;
+                this.clientHeight = e.target.clientHeight;
+                this.scrollHeight = e.target.scrollHeight;
             },
             submitHandler(){
                 console.log('submit');
