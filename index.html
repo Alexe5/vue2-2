@@ -176,6 +176,7 @@
                     <input type="checkbox"
                            id="form__checkbox2"
                            v-model="spam"
+                           v-on:change="spamSwitch()"
                     >
                     <label for="form__checkbox2">Send me spam</label>
                 </div>
@@ -243,6 +244,11 @@
             },
             submitHandler(){
                 this.firstScreen = false;
+            },
+            spamSwitch(){
+                if ( !this.spam ) {
+                    this.send = 'not selected';
+                }
             }
         },
         updated() {
