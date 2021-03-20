@@ -9,6 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: monospace;
             font-size: 16px;
@@ -240,6 +244,10 @@
             submitHandler(){
                 this.firstScreen = false;
             }
+        },
+        updated() {
+            let currentHeight = document.body.offsetHeight;
+            window.scrollTo(0, currentHeight);
         }
     });
 </script>
